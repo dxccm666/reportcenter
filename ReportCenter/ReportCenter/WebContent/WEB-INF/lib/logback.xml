@@ -1,0 +1,22 @@
+<configuration>
+
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />  
+
+  <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+    <discriminator class="ch.qos.logback.classic.sift.JNDIBasedContextDiscriminator">
+      <defaultValue>unknown</defaultValue>
+    </discriminator>
+    <sift>
+      <appender name="FILE-${contextName}" class="ch.qos.logback.core.FileAppender">
+        <file>${contextName}.log</file>
+        <encoder>
+          <pattern>%-50(%level %logger{35}) cn=%contextName - %msg%n</pattern>
+         </encoder>
+      </appender>
+     </sift>
+    </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="SIFT" />
+  </root>
+</configuration>

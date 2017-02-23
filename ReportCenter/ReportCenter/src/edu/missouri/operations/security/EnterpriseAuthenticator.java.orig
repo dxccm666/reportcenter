@@ -1,0 +1,280 @@
+package edu.missouri.cf.security;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.unboundid.ldap.sdk.LDAPConnection;
+import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.SearchResult;
+import com.unboundid.ldap.sdk.SearchResultEntry;
+import com.unboundid.ldap.sdk.SearchScope;
+
+import edu.missouri.cf.projex4.data.Pools;
+import edu.missouri.cf.projex4.data.system.User;
+import edu.missouri.cf.projex4.data.system.User.UserAttribute;
+import edu.missouri.cf.projex4.data.system.User.UserType;
+import edu.missouri.cf.projex4.data.system.properties.SystemProperties;
+import edu.missouri.cf.projex4.system.Authenticator;
+
+public class EnterpriseAuthenticator implements Authenticator {
+
+	/* Parameters for initial global catalog query */
+
+	private String gcBindDN;
+
+	/**
+	 * @return the gcBindDN
+	 */
+	public String getGcBindDN() {
+		return gcBindDN;
+	}
+
+	/**
+	 * @param gcBindDN
+	 *            the gcBindDN to set
+	 */
+	public void setGcBindDN(String gcBindDN) {
+		this.gcBindDN = gcBindDN;
+	}
+
+	/**
+	 * @return the gcPassword
+	 */
+	public String getGcPassword() {
+		return gcPassword;
+	}
+
+	/**
+	 * @param gcPassword
+	 *            the gcPassword to set
+	 */
+	public void setGcPassword(String gcPassword) {
+		this.gcPassword = gcPassword;
+	}
+
+	/**
+	 * @return the gcServer
+	 */
+	public String getGcServer() {
+		return gcServer;
+	}
+
+	/**
+	 * @param gcServer
+	 *            the gcServer to set
+	 */
+	public void setGcServer(String gcServer) {
+		this.gcServer = gcServer;
+	}
+
+	private String gcPassword;
+	private String gcServer;
+
+	private final static Logger logger = LoggerFactory.getLogger(EnterpriseAuthenticator.class);
+
+	public EnterpriseAuthenticator() {
+
+		this.gcBindDN = SystemProperties.get("globalcatalog.binddn");
+		this.gcPassword = SystemProperties.get("globalcatalog.password");
+		this.gcServer = SystemProperties.get("globalcatalog.server");
+
+	}
+
+	private String getServer(String dn) {
+		return dn.substring(dn.indexOf("DC=")).replaceAll("DC=", "").replaceAll(",", ".");
+	}
+
+	@SuppressWarnings("unused")
+	public boolean authenticate(String username, String password, User u) {
+
+		// For some reason the User is coming in as null. This may have
+		// something to do with the startup routine.
+
+		if (null == u) {
+			u = new User();
+		}
+
+		String sso;
+
+		if (username.indexOf("@") != -1) {
+			sso = username.substring(0, username.indexOf("@") - 1);
+		} else if (username.indexOf("\\") != -1) {
+			sso = username.substring(username.indexOf("\\") + 1).toUpperCase();
+		} else {
+			sso = username;
+		}
+
+		LDAPConnection gcConnection = null;
+		LDAPConnection connection = null;
+
+		SearchResult searchResult;
+
+		String dn = null;
+		String newserver = null;
+
+		try {
+
+			gcConnection = new LDAPConnection(gcServer, 3268, gcBindDN, gcPassword);
+
+			if (gcConnection != null) {
+
+				SearchResult gcSearchResult = gcConnection.search("dc=edu", SearchScope.SUB, "(sAMAccountName=" + sso + ")");
+
+				if (gcSearchResult.getEntryCount() == 1) {
+
+					SearchResultEntry e = gcSearchResult.getSearchEntries().get(0);
+					dn = e.getDN();
+
+					u.setValuesFromLDAP(dn, "University of Missouri", e);
+					newserver = getServer(dn);
+
+					if (logger.isDebugEnabled()) {
+						logger.debug("Global catalog server says to try {} for  user {} {}", newserver, sso, dn);
+					}
+
+				}
+
+				gcConnection.close();
+
+			} else {
+
+				if (logger.isErrorEnabled()) {
+					logger.error("Unable to Make LDAP Connection to global catalog server");
+				}
+
+				return false;
+
+			}
+
+		} catch (LDAPException e) {
+
+			if (logger.isErrorEnabled()) {
+				logger.error("LDAP Exception occurred ", e);
+			}
+			return false;
+
+		} finally {
+
+			if (gcConnection != null) {
+				gcConnection.close();
+			}
+
+		}
+
+		try {
+
+			connection = new LDAPConnection(newserver, 389, dn, password);
+			if (connection != null) {
+
+				// Correct Password - User is properly verified
+				u.setVerifiedID(dn);
+				u.setVerifiedBy("University of Missouri");
+
+				u.put(UserAttribute.LOGINNAME, sso);
+
+				if (logger.isDebugEnabled()) {
+					logger.debug("UM SSO = {}", u.get(User.UserAttribute.USERID));
+				}
+
+				connection.close();
+
+			} else {
+
+				if (logger.isErrorEnabled()) {
+					logger.error("Unable to make ldap connection to " + newserver);
+				}
+
+				return false;
+
+			}
+			
+		} catch (LDAPException e) {
+			
+			if (logger.isErrorEnabled()) {
+				logger.error("LDAP Exception occurred ", e);
+			}
+			return false;
+
+		} finally {
+
+			if (connection != null) {
+				connection.close();
+			}
+		}
+
+		Connection c = null;
+		try {
+
+			c = Pools.getConnection(Pools.Names.PROJEX);
+
+			/*
+			 * We maintain a copy of the Peoplesoft UM Employees table for
+			 * speediness
+			 */
+
+			try (PreparedStatement stmt = c
+					.prepareStatement("select emplid, emailid, name_last, name_first, name, fte, work_address1, work_address2, work_address3, work_city, work_state, work_postal, work_phone from ps_um_employees where upper(sso_id) = upper(?) order by action_dt desc")) {
+				stmt.setString(1, sso);
+
+				try (ResultSet rs = stmt.executeQuery()) {
+
+					if (rs.next()) {
+
+						/*
+						 * We check against PeopleSoft to determine whether a MU
+						 * login id is really a MU employee, because DoIT
+						 * creates ID's for offcampus users. We also screen out
+						 * resource accounts.
+						 * 
+						 * Only real UM employees can be an enterprise user.
+						 */
+
+						u.setValuesFromPeopleSoft(dn, "University of Missouri", rs);
+
+						if (logger.isInfoEnabled()) {
+							logger.info("Verified PeopleSoft User name is " + u.get(User.UserAttribute.DISPLAYNAME));
+						}
+					}
+				}
+			}
+
+			try (PreparedStatement stmt = c
+					.prepareStatement("select * from userdetails where upper(userlogin) = upper(?) and isactive = 1 and status = 'ACTIVE'")) {
+
+				stmt.setString(1, sso);
+				try (ResultSet rs = stmt.executeQuery()) {
+
+					if (rs.next()) {
+						u.put(UserAttribute.USERID, rs.getString("USERID"));
+						u.setUserType(UserType.valueOf(rs.getString("USERTYPE")));
+
+						if (logger.isDebugEnabled()) {
+							logger.debug("ID from the users table = {}", rs.getString("USERID"));
+						}
+
+						u.put(UserAttribute.AUTHPROVIDERLOGIN, sso);
+
+						return true;
+					}
+
+				}
+			}
+
+		} catch (SQLException sqle) {
+
+			if (logger.isErrorEnabled()) {
+				logger.error("Could not get ID info from users table", sqle);
+			}
+
+		} finally {
+			Pools.releaseConnection(Pools.Names.PROJEX, c);
+		}
+
+		return false;
+	}
+}
