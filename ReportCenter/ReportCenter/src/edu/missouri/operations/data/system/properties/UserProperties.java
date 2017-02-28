@@ -10,13 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
 
-import edu.missouri.cf.data.OracleString;
-import edu.missouri.cf.projex4.data.Pools;
-import edu.missouri.cf.projex4.data.system.User;
-import edu.missouri.cf.projex4.data.system.core.Loggers;
+import edu.missouri.operations.data.OracleString;
+import edu.missouri.operations.reportcenter.Pools;
+import edu.missouri.operations.data.User;
 
 /**
  * @author graumannc
@@ -25,7 +25,7 @@ import edu.missouri.cf.projex4.data.system.core.Loggers;
 @SuppressWarnings("serial")
 public class UserProperties extends Properties {
 
-	private static Logger logger = Loggers.getLogger(UserProperties.class);
+	private static final transient Logger logger = LoggerFactory.getLogger(UserProperties.class);
 
 	String userId;
 	

@@ -28,7 +28,7 @@ import com.vaadin.ui.UI;
 import edu.missouri.operations.data.OracleHelper;
 import edu.missouri.operations.data.OracleTimestamp;
 import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.cf.projex4.data.Pools;
+import edu.missouri.operations.reportcenter.Pools;
 import edu.missouri.cf.projex4.data.system.core.users.UserLoginHistory;
 
 @SuppressWarnings("serial")

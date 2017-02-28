@@ -12,6 +12,7 @@ import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import c10n.C10N;
 
@@ -25,12 +26,11 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button;
-import edu.missouri.cf.data.OracleBoolean;
-import edu.missouri.cf.data.OracleString;
+import edu.missouri.operations.data.OracleBoolean;
+import edu.missouri.operatons.data.OracleString;
 import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.data.reports.ReportCronTasks;
-import edu.missouri.cf.projex4.data.system.User;
-import edu.missouri.cf.projex4.data.system.core.Loggers;
+import edu.missouri.operations.data.User;
 import edu.missouri.cf.projex4.ui.c10n.configuration.ReportCronTaskText;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.OracleTimestampField;
@@ -45,7 +45,7 @@ import edu.missouri.cf.projex4.ui.desktop.scheduler.SchedulerComponent;
 @SuppressWarnings("serial")
 public class ReportCronTaskEditorView extends StandardEditorView {
 
-	private static Logger logger = Loggers.getLogger(ReportCronTaskEditorView.class);
+	private static final transient Logger logger = LoggerFactory.getLogger(ReportCronTaskEditorView.class);
 
 	private ReportCronTaskText st;
 

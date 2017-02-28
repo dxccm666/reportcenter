@@ -16,8 +16,8 @@ import com.vaadin.data.util.filter.And;
 import com.vaadin.data.util.filter.Compare;
 import com.vaadin.data.util.sqlcontainer.connection.JDBCConnectionPool;
 
-import edu.missouri.cf.data.OracleString;
-import edu.missouri.cf.projex4.data.Pools;
+import edu.missouri.operations.data.OracleString;
+import edu.missouri.operations.reportcenter.Pools;
 
 /**
  * @author graumannc

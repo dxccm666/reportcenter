@@ -3,7 +3,7 @@ package edu.missouri.cf.projex4.ui.desktop.reports;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomField;
 
-import edu.missouri.cf.data.OracleString;
+import edu.missouri.operations.data.OracleString;
 
 @SuppressWarnings("serial")
 public class ReportFileField extends CustomField<OracleString> {

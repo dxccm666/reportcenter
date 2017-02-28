@@ -9,7 +9,7 @@ import org.jasypt.digest.StandardStringDigester;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.missouri.cf.projex4.data.Pools;
+import edu.missouri.operations.reportcenter.Pools;
 import edu.missouri.operations.data.User;
 
 public class InternalAuthenticator implements Authenticator {

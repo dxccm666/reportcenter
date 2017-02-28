@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import edu.missouri.cf.projex4.data.Pools;
+import edu.missouri.operations.reportcenter.Pools;
 import edu.missouri.operations.data.User;
 
 public class DummyAuthenticator implements Authenticator {

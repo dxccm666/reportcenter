@@ -2,6 +2,7 @@ package edu.missouri.cf.projex4.ui.desktop.reports;
 
 import java.sql.SQLException;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import c10n.C10N;
 
@@ -10,8 +11,7 @@ import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.data.util.sqlcontainer.query.OrderBy;
 
 import edu.missouri.cf.projex4.data.reports.ReportCronTaskParameters;
-import edu.missouri.cf.projex4.data.system.User;
-import edu.missouri.cf.projex4.data.system.core.Loggers;
+import edu.missouri.operations.data.User;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
 import edu.missouri.cf.projex4.ui.c10n.configuration.ReportRunParametersTableText;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
@@ -20,7 +20,7 @@ import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
 @SuppressWarnings("serial")
 public class ReportCronTaskParametersComponent extends TableDependentProjexEditor {
 
-	Logger logger = Loggers.getLogger(ReportCronTaskParametersComponent.class);
+	final static transient Logger logger = LoggerFactory.getLogger(ReportCronTaskParametersComponent.class);
 	private ReportRunParametersTableText st;
 	private ReportCronTaskParameters query;
 
