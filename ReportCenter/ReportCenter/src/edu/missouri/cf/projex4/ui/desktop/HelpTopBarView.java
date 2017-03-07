@@ -16,6 +16,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.VerticalLayout;
 import edu.missouri.cf.projex4.Projex4UI;
+import edu.missouri.operations.ui.views.ErrorView;
 
 /**
  * @author graumannc

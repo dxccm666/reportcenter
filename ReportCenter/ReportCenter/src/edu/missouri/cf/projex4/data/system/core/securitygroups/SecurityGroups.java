@@ -23,7 +23,6 @@ import edu.missouri.operations.data.OracleString;
 import edu.missouri.operations.data.OracleTimestamp;
 import edu.missouri.cf.projex4.ProjexViewProvider;
 import edu.missouri.operations.reportcenter.Pools;
-import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.SecurityGroup;
 
 /**

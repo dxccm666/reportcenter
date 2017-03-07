@@ -1,12 +1,11 @@
-package edu.missouri.cf.projex4.ui.desktop;
+package edu.missouri.operations.ui.desktop.buttons;
 
 import java.util.Locale;
 
 import c10n.C10N;
 
-import edu.missouri.cf.projex4.Projex4UI;
-import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.ui.c10n.StandardButtonText;
+import edu.missouri.cf.projex4.ui.desktop.NavigatorButton;
 
 @SuppressWarnings("serial")
 public class AddNavigatorButton extends NavigatorButton {
@@ -16,15 +15,10 @@ public class AddNavigatorButton extends NavigatorButton {
 	public AddNavigatorButton() {
 		super();
 
-		if (User.getUser() != null) {
-			st = C10N.get(StandardButtonText.class, User.getUser().getUserLocale());
-		} else {
-			st = C10N.get(StandardButtonText.class, Locale.ENGLISH);
-		}
-
+		st = C10N.get(StandardButtonText.class, Locale.ENGLISH);
 		setCaption(st.addButton());
 		setDescription(st.addButton_help());
-		setIcon(Projex4UI.iconSet.get("add"));
+		// setIcon(Projex4UI.iconSet.get("add"));
 		addStyleName("borderless");
 	}
 }

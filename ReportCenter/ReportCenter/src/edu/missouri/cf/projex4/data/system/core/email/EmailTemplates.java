@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import com.vaadin.data.util.sqlcontainer.query.OracleQuery;
 
 import edu.missouri.operations.data.OracleTimestamp;
+import edu.missouri.operations.data.User;
 import edu.missouri.operations.reportcenter.Pools;
-import edu.missouri.operations.projex4.data.system.User;
 
 /**
  * @author graumannc

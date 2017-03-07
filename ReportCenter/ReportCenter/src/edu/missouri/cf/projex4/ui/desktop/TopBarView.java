@@ -28,6 +28,7 @@ import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.Bulletins;
 import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
 import edu.missouri.cf.projex4.ui.c10n.TopBarText;
+import edu.missouri.operations.ui.views.ErrorView;
 
 /**
  * @author graumannc

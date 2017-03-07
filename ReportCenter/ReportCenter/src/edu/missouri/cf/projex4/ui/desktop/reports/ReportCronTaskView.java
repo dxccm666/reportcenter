@@ -28,11 +28,11 @@ import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroupUser
 import edu.missouri.cf.projex4.ui.c10n.configuration.ReportCronTaskText;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.common.system.ExportButton;
-import edu.missouri.cf.projex4.ui.desktop.DeleteButton;
 import edu.missouri.cf.projex4.ui.desktop.NavigatorOpenerButton;
 import edu.missouri.cf.projex4.ui.desktop.StandardTable;
 import edu.missouri.cf.projex4.ui.desktop.TableControlLayout;
 import edu.missouri.cf.projex4.ui.desktop.TopBarView;
+import edu.missouri.operations.ui.desktop.buttons.DeleteButton;
 
 /**
  * @author graumannc

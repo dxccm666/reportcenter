@@ -1,4 +1,4 @@
-package edu.missouri.cf.projex4.ui.desktop;
+package edu.missouri.operations.ui.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

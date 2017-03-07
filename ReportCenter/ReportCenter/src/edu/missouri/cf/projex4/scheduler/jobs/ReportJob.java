@@ -41,7 +41,6 @@ import org.quartz.JobKey;
 import com.vaadin.data.Item;
 import com.vaadin.ui.AbstractField;
 
-import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
 import edu.missouri.operations.data.OracleHelper;
 
 /*
@@ -85,9 +84,6 @@ public class ReportJob extends ProjexEmailerJob {
 
 	private String reportName;
 	private String fileName;
-
-	private String uuid;
-	private String objectId;
 
 	ArrayList<ParameterData> holders;
 
@@ -176,27 +172,6 @@ public class ReportJob extends ProjexEmailerJob {
 
 	}
 
-	public ObjectData getObjectDataFromUUID(String uuid) throws SQLException {
-
-		if (uuid == null) {
-			return null;
-		}
-
-		ObjectData d = null;
-
-		try (PreparedStatement stmt = conn.prepareStatement("select * from objects where uuid = ?")) {
-			stmt.setString(1, uuid);
-			try (ResultSet rs = stmt.executeQuery()) {
-				if (rs.next()) {
-					d = ObjectData.newObjectData(rs);
-				}
-			}
-		}
-
-		return d;
-
-	}
-	
 	@Override
 	public void executeNow() {
 		throw new UnsupportedOperationException("ReportJobs cannot be manually run.");
@@ -296,18 +271,6 @@ public class ReportJob extends ProjexEmailerJob {
 			reportEngine = factory.createReportEngine(config);
 			// reportEngine.setLogger(logger);
 
-			if (reportCronTaskParameters.get("UUID") != null) {
-
-				uuid = reportCronTaskParameters.get("UUID").parameterValue;
-				ObjectData d = getObjectDataFromUUID(uuid);
-				if (d != null) {
-					objectId = d.getObjectId();
-				}
-
-			} else if (reportCronTaskParameters.get("ID") != null) {
-				objectId = reportCronTaskParameters.get("ID").parameterValue;
-			}
-
 			String reportFileName = getSystemProperty("report.root") + "/" + fileName;
 			if (logger.isDebugEnabled()) {
 				logger.debug("Report File name = {}", reportFileName);
@@ -324,15 +287,7 @@ public class ReportJob extends ProjexEmailerJob {
 
 			p_task = reportEngine.createGetParameterDefinitionTask(design);
 
-			if (uuid != null) {
-				p_task.setParameterValue("UUID", uuid);
-			}
-
 			p_task.setParameterValue("USERID", scheduledBy);
-
-			if (objectId != null) {
-				p_task.setParameterValue("ID", objectId);
-			}
 
 			Collection<IScalarParameterDefn> params = p_task.getParameterDefns(true);
 
@@ -351,13 +306,7 @@ public class ReportJob extends ProjexEmailerJob {
 
 					parmDetails = loadParameterDetails(p_task, scalar);
 
-					if ("UUID".equals(parmDetails.getName())) {
-						task.setParameterValue("UUID", uuid);
-						parmDetails.setValue(uuid);
-					} else if ("ID".equals(parmDetails.getName())) {
-						task.setParameterValue("ID", objectId);
-						parmDetails.setValue(objectId);
-					} else if ("USERID".equals(parmDetails.getName())) {
+					if ("USERID".equals(parmDetails.getName())) {
 						task.setParameterValue("USERID", scheduledBy);
 						parmDetails.setValue(scheduledBy);
 					} else if (!reportCronTaskParameters.containsKey(parmDetails.getName())) {
