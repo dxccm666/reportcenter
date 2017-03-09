@@ -84,7 +84,8 @@ public class ProjexViewProvider implements ViewProvider {
 			// return loginView;
 			
 		default:
-			return new DefaultView();
+	//		return new DefaultView();
+			return null;
 		}
 	}
 
