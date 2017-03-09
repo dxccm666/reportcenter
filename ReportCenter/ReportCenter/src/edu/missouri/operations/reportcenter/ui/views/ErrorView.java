@@ -1,4 +1,4 @@
-package edu.missouri.operations.ui.views;
+package edu.missouri.operations.reportcenter.ui.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

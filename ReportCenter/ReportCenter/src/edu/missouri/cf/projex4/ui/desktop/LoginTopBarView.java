@@ -18,7 +18,7 @@ import com.vaadin.ui.Button.ClickEvent;
 
 import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.operations.ui.views.ErrorView;
+import edu.missouri.operations.reportcenter.ui.views.ErrorView;
 
 @SuppressWarnings("serial")
 public abstract class LoginTopBarView extends VerticalLayout implements View, ProjexView {

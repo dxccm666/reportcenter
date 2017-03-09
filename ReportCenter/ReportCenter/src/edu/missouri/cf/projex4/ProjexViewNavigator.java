@@ -15,8 +15,8 @@ import edu.missouri.cf.projex4.ui.desktop.EditingStateManipulator;
 import edu.missouri.cf.projex4.ui.desktop.EditingStateManipulator.EditingState;
 import edu.missouri.cf.projex4.ui.desktop.login.LoginView;
 import edu.missouri.operations.data.User;
+import edu.missouri.operations.reportcenter.ui.views.ErrorView;
 import edu.missouri.operations.ui.EnumNavigator;
-import edu.missouri.operations.ui.views.ErrorView;
 
 /**
  * ProjexViewNavigator is a single point of instantiation for all screens.
