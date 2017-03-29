@@ -10,9 +10,9 @@ import com.vaadin.ui.Button.ClickEvent;
 
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroupUsers;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
+import edu.missouri.operations.reportcenter.data.SecurityGroupUsers;
 
 @SuppressWarnings("serial")
 public class SecurityGroupUsersComponent extends TableDependentProjexEditor {

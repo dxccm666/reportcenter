@@ -20,13 +20,11 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import edu.missouri.cf.projex4.Projex4UI;
-import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
 import edu.missouri.cf.projex4.ui.c10n.TopBarText;
 import edu.missouri.operations.data.User;
-import edu.missouri.operations.reportcenter.ui.views.ErrorView;
+import edu.missouri.operations.reportcenter.data.SecurityGroupUsers;
 
 /**
  * @author graumannc
@@ -70,15 +68,16 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 		super.attach();
 		view = this;
-
-		/*
-
-		if (!SecurityGroups.canAccess(ProjexViewProvider.Views.CONFIGURATION)) {
+		
+		if(!SecurityGroupUsers.memberOf("ADMINISTRATORS",User.getUser().getUserId())) {
 			configurationButton.setVisible(false);
 			configurationButton.setEnabled(false);
 		}
 		
-		*/
+		//TODO Remove after security is set up.
+		configurationButton.setVisible(true);
+		configurationButton.setEnabled(true);
+		
 
 	}
 
@@ -96,7 +95,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 		topBarText = C10N.get(TopBarText.class, Locale.ENGLISH);
 
-		homeButton = new TopbarButton(ProjexViewProvider.Views.HOME) {
+		homeButton = new TopbarButton(ReportCenterViewProvider.Views.HOME) {
 			{
 				addStyleName("logo");
 				setIcon(new ThemeResource("images/projextblogo_topbar.png"));
@@ -104,15 +103,13 @@ public abstract class TopBarView extends VerticalLayout implements View {
 			}
 		};
 		
-		/*
-		configurationButton = new TopbarButton(ProjexViewProvider.Views.CONFIGURATION, topBarText.configuration()) {
+		configurationButton = new TopbarButton(ReportCenterViewProvider.Views.CONFIGURATION, topBarText.configuration()) {
 			{
 				addStyleName("icon-configuration");
 				setIcon(new ThemeResource("icons/chalkwork/basic/settings_16x16.png"));
 				setDescription(topBarText.configuration_help());
 			}
 		};
-		*/
 
 		logoffButton = new NativeButton(topBarText.signOff()) {
 			{
@@ -130,8 +127,8 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 						addStyleName("selected");
 						User.setUser(null);
-						Projex4UI.get().getPage().setLocation("");
-						Projex4UI.get().getSession().close();
+						UI.getCurrent().getPage().setLocation("");
+						UI.getCurrent().getSession().close();
 					}
 				});
 			}
@@ -156,7 +153,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 						addStyleName("menu");
 						setWidth("100%");
 						addComponent(homeButton);
-			//			addComponent(configurationButton);
+						addComponent(configurationButton);
 
 					}
 				};
@@ -188,6 +185,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 			}
 		};
+		
 		Button closeButton = new Button() {
 			{
 				setIcon(new ThemeResource("icons/special/notification_close.png"));

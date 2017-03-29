@@ -26,7 +26,7 @@ public class DummyAuthenticator implements Authenticator {
 		ResultSet rs = null;
 
 		try {
-			c = Pools.getConnection(Pools.Names.PROJEX);
+			c = Pools.getConnection(Pools.Names.REPORTCENTER);
 			stmt = c.prepareStatement("select id, userlogin from users where upper(userlogin) = upper(?)");
 			stmt.setString(1, "PROJEX4");
 
@@ -39,7 +39,7 @@ public class DummyAuthenticator implements Authenticator {
 			e.printStackTrace();
 		} finally {
 			Pools.close(rs, stmt);
-			Pools.releaseConnection(Pools.Names.PROJEX, c);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, c);
 		}
 		
 		System.err.println("Welcome PROJEX4");

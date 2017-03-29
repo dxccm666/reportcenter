@@ -18,24 +18,23 @@ import edu.missouri.operations.data.HikariConnectionPool;
 public class Pools {
 
 	public enum Names {
-		PROJEX, PSHR, PSFIN
+		REPORTCENTER, PSHR 
 	}
 
 	public enum Mode {
-		PRODUCTION, TESTING, DEVELOPMENT
+		PRODUCTION, DEVELOPMENT
 	}
 
 	private final static transient Logger logger = LoggerFactory.getLogger(Pools.class);
 
-	private JDBCConnectionPool projexConnectionPool = null;
+	private JDBCConnectionPool connectionPool = null;
 	private JDBCConnectionPool pshrConnectionPool = null;
-	private JDBCConnectionPool psfinConnectionPool = null;
 
 	public final static Mode mode = Mode.PRODUCTION;
-	final static boolean useHikari = true;
-	final static boolean useFullDatabase = true;
-
-	public static String projex4ConnectionString;
+	public static String dbConnectionString;
+	
+	private static final String userName = "reportcenter";
+	private static final String password = "rptUser392";
 
 	static Pools pools;
 
@@ -47,84 +46,27 @@ public class Pools {
 
 		int maxConnections = 0;
 
-		if (logger.isTraceEnabled()) {
-			logger.trace("Creating connection pool to Projex 4 Server");
-		}
-
 		switch (mode) {
 
 		case DEVELOPMENT:
 			if (logger.isTraceEnabled()) {
 				logger.trace("Using development server connection");
 			}
-			projex4ConnectionString = "jdbc:oracle:thin:@//128.206.190.72:1521/projex4.projex4db.cf.missouri.edu";
+			dbConnectionString = "jdbc:oracle:thin:@//128.206.190.72:1521/projex4.projex4db.cf.missouri.edu";
 			break;
 
 		case PRODUCTION:
 			if (logger.isTraceEnabled()) {
 				logger.trace("Using production server connection");
 			}
-			projex4ConnectionString = "jdbc:oracle:thin:@//128.206.191.213:1521/projex4.projex4db.col.missouri.edu";
-			break;
-
-		case TESTING:
-			if (logger.isTraceEnabled()) {
-				logger.trace("Using testing server connection");
-			}
-			projex4ConnectionString = "jdbc:oracle:thin:@//128.206.191.211:1521/projex.p4testdb.cf.missouri.edu";
-			break;
-
-		default:
+			dbConnectionString = "jdbc:oracle:thin:@//128.206.190.72:1521/projex4.projex4db.cf.missouri.edu";
 			break;
 
 		}
 
-		if (useFullDatabase) {
-			maxConnections = 300;
-		} else {
-			maxConnections = 40;
-		}
-
-		if (useHikari) {
-			projexConnectionPool = new HikariConnectionPool("oracle.jdbc.OracleDriver", projex4ConnectionString, "projex4", "prj4_user", 50, maxConnections);
-		} else {
-			try {
-				projexConnectionPool = new SimpleJDBCConnectionPool("oracle.jdbc.OracleDriver", projex4ConnectionString, "projex4", "prj4_user", 50, maxConnections);
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}
-
-		if (logger.isTraceEnabled()) {
-			logger.trace("Creating connection pool to PS HR instance");
-		}
-
-		if (useHikari) {
-			pshrConnectionPool = new HikariConnectionPool("oracle.jdbc.OracleDriver", "jdbc:oracle:thin:@um-hrreport-01.umsystem.edu:1521/HRRPT.UMSYSTEM.EDU", "mu_hr", "Marbles1", 2, 5);
-		} else {
-			try {
-				pshrConnectionPool = new SimpleJDBCConnectionPool("oracle.jdbc.OracleDriver", "jdbc:oracle:thin:@um-hrreport-01.umsystem.edu:1521/HRRPT.UMSYSTEM.EDU", "mu_hr", "Marbles1", 2, 5);
-			} catch (SQLException e) {
-				logger.error("Could not connect to PeopleSoft HR database", e);
-			}
-		}
-
-		if (logger.isTraceEnabled()) {
-			logger.trace("Creating connection pool to PS Financials instance"); //
-		}
-
-		if (useHikari) {
-			psfinConnectionPool = new HikariConnectionPool("oracle.jdbc.OracleDriver", "jdbc:oracle:thin:@//um-fsreport-01.umsystem.edu:1521/FSRPT.UMSYSTEM.EDU", "mu_campus_facilities", "cfmax$01", 2,
-					5);
-		} else {
-
-			try {
-				psfinConnectionPool = new SimpleJDBCConnectionPool("oracle.jdbc.OracleDriver", "jdbc:oracle:thin:@//um-fsreport-01.umsystem.edu:1521/FSRPT.UMSYSTEM.EDU", "mu_campus_facilities",
-						"cfmax$01", 2, 5);
-			} catch (SQLException e) {
-				logger.error("Could not connect to PeopleSoft Financial database", e);
-			}
-		}
+		maxConnections = 40;
+		connectionPool = new HikariConnectionPool("oracle.jdbc.OracleDriver", dbConnectionString, userName, password, 50, maxConnections);
+		pshrConnectionPool = new HikariConnectionPool("oracle.jdbc.OracleDriver", "jdbc:oracle:thin:@um-hrreport-01.umsystem.edu:1521/HRRPT.UMSYSTEM.EDU", "mu_hr", "Marbles1", 2, 5);
 
 		pools = this;
 
@@ -141,17 +83,13 @@ public class Pools {
 	 */
 	public static JDBCConnectionPool getConnectionPool(Pools.Names pool) {
 
-		// Pools pools = (Pools) VaadinServlet.getCurrent().getServletContext().getAttribute("POOLS");
-
 		if (pools != null) {
 
 			switch (pool) {
-			case PROJEX:
-				return pools.projexConnectionPool;
+			case REPORTCENTER:
+				return pools.connectionPool;
 			case PSHR:
 				return pools.pshrConnectionPool;
-			case PSFIN:
-				return pools.psfinConnectionPool;
 			}
 
 		}
@@ -338,9 +276,8 @@ public class Pools {
 	}
 
 	public void shutdown() {
-		projexConnectionPool.destroy();
+		connectionPool.destroy();
 		pshrConnectionPool.destroy();
-		psfinConnectionPool.destroy();
 	}
 
 }

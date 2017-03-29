@@ -32,7 +32,7 @@ public class InternalAuthenticator implements Authenticator {
 
 		try {
 
-			c = Pools.getConnection(Pools.Names.PROJEX);
+			c = Pools.getConnection(Pools.Names.REPORTCENTER);
 			try (PreparedStatement stmt = getPreparedStatement(c, password, username)) {
 				stmt.executeUpdate();
 			}
@@ -40,7 +40,7 @@ public class InternalAuthenticator implements Authenticator {
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, c);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, c);
 		}
 
 	}
@@ -64,7 +64,7 @@ public class InternalAuthenticator implements Authenticator {
 		Connection c = null;
 
 		try {
-			c = Pools.getConnection(Pools.Names.PROJEX);
+			c = Pools.getConnection(Pools.Names.REPORTCENTER);
 			try (PreparedStatement stmt = getPreparedStatement(c, username); ResultSet rs = stmt.executeQuery()) {
 
 				if (rs.next()) {
@@ -88,7 +88,7 @@ public class InternalAuthenticator implements Authenticator {
 		} catch (SQLException sqle) {
 			logger.error("Could not verify internal user id and password ", sqle);
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, c);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, c);
 		}
 
 		return false;

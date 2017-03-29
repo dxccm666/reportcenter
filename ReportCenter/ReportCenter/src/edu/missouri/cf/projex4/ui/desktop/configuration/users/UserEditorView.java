@@ -14,12 +14,12 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.OraclePopupDateField;
 import edu.missouri.cf.projex4.ui.common.OracleTimestampField;
 import edu.missouri.cf.projex4.ui.common.system.StandardFormEditControls;
 import edu.missouri.cf.projex4.ui.desktop.StandardEditorView;
+import edu.missouri.operations.reportcenter.data.Users;
 
 @SuppressWarnings("serial")
 public class UserEditorView extends StandardEditorView {

@@ -26,11 +26,11 @@ import edu.missouri.cf.projex4.data.ItemInitializer;
 import edu.missouri.cf.projex4.data.common.EnterprisePersons;
 import edu.missouri.cf.projex4.data.common.Persons;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.StandardTable;
 import edu.missouri.cf.projex4.ui.desktop.documents.PopupWindow;
+import edu.missouri.operations.reportcenter.data.Users;
 
 @SuppressWarnings("serial")
 public class AddNewPSUserView extends PopupWindow {

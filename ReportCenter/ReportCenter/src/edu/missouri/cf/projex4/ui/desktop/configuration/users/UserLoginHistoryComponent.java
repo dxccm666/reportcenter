@@ -10,10 +10,10 @@ import com.vaadin.data.util.sqlcontainer.query.OrderBy;
 
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.data.system.core.users.UserLoginHistory;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.common.system.StandardComboBox;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
+import edu.missouri.operations.reportcenter.data.UserLoginHistory;
 
 @SuppressWarnings("serial")
 public class UserLoginHistoryComponent extends TableDependentProjexEditor {

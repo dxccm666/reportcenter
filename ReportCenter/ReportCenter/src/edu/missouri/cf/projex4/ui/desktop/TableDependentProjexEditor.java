@@ -23,8 +23,8 @@ import com.vaadin.ui.Notification;
 import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
 import edu.missouri.cf.projex4.ui.common.system.ExportButton;
+import edu.missouri.operations.reportcenter.data.SecurityGroups;
 
 /**
  * @author graumannc

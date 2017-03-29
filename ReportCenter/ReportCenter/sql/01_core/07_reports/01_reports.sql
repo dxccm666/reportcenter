@@ -1,13 +1,13 @@
 CREATE SEQUENCE REPORTSEQ;
 
+DROP TABLE REPORTS;
+
 CREATE TABLE REPORTS (
 	ID VARCHAR2(10) NOT NULL,
 	ROWSTAMP VARCHAR2(10) NOT NULL,
 	REPORTNAME VARCHAR2(200),
 	DESCRIPTION VARCHAR2(2000),
 	HELPTEXT VARCHAR2(200),
-	CAMPUSID VARCHAR2(10),
-	ISALLCAMPUS NUMBER(1) DEFAULT 0 NOT NULL,
 	ISACTIVE NUMBER(1) DEFAULT 1 NOT NULL,
 	FILENAME VARCHAR2(300),
 	REQUESTED TIMESTAMP,
@@ -58,10 +58,9 @@ BEGIN
 END;
 /
 
+create index reports_idx10 on reports (isactive);
 create index reports_idx11 on reports (requestedby);
 create index reports_idx12 on reports (registeredby);
-create index reports_idx13 on reports (campusid);
-create index reports_idx14 on reports (isallcampus);
 create index reports_idx15 on reports (category);
 create index reports_idx16 on reports (status);
 	

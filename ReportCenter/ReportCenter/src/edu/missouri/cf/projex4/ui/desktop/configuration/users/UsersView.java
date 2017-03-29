@@ -19,15 +19,15 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.common.system.ExportButton;
-import edu.missouri.cf.projex4.ui.desktop.NavigatorButton;
 import edu.missouri.cf.projex4.ui.desktop.NavigatorOpenerButton;
 import edu.missouri.cf.projex4.ui.desktop.StandardTable;
 import edu.missouri.cf.projex4.ui.desktop.TableClickListener;
 import edu.missouri.cf.projex4.ui.desktop.TableControlLayout;
 import edu.missouri.cf.projex4.ui.desktop.TopBarView;
+import edu.missouri.operations.reportcenter.data.Users;
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
 
 @SuppressWarnings("serial")
 public class UsersView extends TopBarView {

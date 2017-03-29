@@ -28,7 +28,7 @@ public class UserLoginAuthenticator implements Authenticator {
 		Connection c = null;
 		try {
 
-			c = Pools.getConnection(Pools.Names.PROJEX);
+			c = Pools.getConnection(Pools.Names.REPORTCENTER);
 
 			try (PreparedStatement stmt = c
 					.prepareStatement("select * from userdetails where upper(userlogin) = upper(?) and isactive = 1 and status = 'ACTIVE'")) {
@@ -66,7 +66,7 @@ public class UserLoginAuthenticator implements Authenticator {
 			}
 
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, c);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, c);
 		}
 	
 		return true;

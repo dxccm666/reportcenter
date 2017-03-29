@@ -17,7 +17,7 @@ import com.vaadin.ui.TextField;
 
 import edu.missouri.cf.data.OracleBoolean;
 import edu.missouri.cf.data.OracleCurrency;
-import edu.missouri.cf.projex4.ui.desktop.filtertable.modulargenerator.ProjexCellStyleGenerator;
+import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;
 
 @SuppressWarnings("serial")
 public class EditableFilterTable extends BasicFilterTable {
@@ -68,7 +68,7 @@ public class EditableFilterTable extends BasicFilterTable {
 			}
 		});
 		
-		setCellStyleGenerator(new ProjexCellStyleGenerator() {
+		setCellStyleGenerator(new StandardCellStyleGenerator() {
 			@Override
 			public String getAdditionalStyles(Table source, Object itemId, Object propertyId) {
 				// add styles here for icons and text. then add the style in the table cell's in projex.scss

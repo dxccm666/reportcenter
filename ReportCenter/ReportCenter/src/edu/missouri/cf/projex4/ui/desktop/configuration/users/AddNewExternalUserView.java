@@ -29,10 +29,10 @@ import edu.missouri.cf.projex4.data.Pools;
 import edu.missouri.cf.projex4.data.common.Persons;
 import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.desktop.documents.PopupWindow;
 import edu.missouri.cf.projex4.ui.desktop.lookups.persons.ExternalPersonEntryComponent;
+import edu.missouri.operations.reportcenter.data.Users;
 
 @SuppressWarnings("serial")
 public class AddNewExternalUserView  extends PopupWindow {

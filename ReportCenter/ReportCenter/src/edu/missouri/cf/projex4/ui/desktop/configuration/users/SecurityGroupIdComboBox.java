@@ -6,7 +6,7 @@ import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.ui.ComboBox;
 
 import edu.missouri.cf.projex4.data.OracleStringToRowIdConverter;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
+import edu.missouri.operations.reportcenter.data.SecurityGroups;
 
 @SuppressWarnings("serial")
 public class SecurityGroupIdComboBox extends ComboBox {

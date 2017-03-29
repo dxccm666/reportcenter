@@ -31,7 +31,7 @@ import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.data.util.PropertysetItem;
 
 import edu.missouri.cf.projex4.data.system.core.email.EmailLogs;
-import edu.missouri.operations.data.system.properties.SystemProperties;
+import edu.missouri.operations.reportcenter.data.SystemProperties;
 
 public class SendMail {
 

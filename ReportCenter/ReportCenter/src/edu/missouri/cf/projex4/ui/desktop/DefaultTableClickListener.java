@@ -13,6 +13,8 @@ import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Button.ClickEvent;
 
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
+
 /**
  * This is implemented on the navigator opener button. This is the default click
  * listener on the opener button if no TableClickListener is set. If you would

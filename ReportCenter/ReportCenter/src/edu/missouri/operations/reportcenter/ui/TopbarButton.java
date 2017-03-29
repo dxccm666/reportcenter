@@ -2,29 +2,28 @@ package edu.missouri.operations.reportcenter.ui;
 
 import com.vaadin.server.Page;
 import com.vaadin.ui.NativeButton;
-import edu.missouri.cf.projex4.Projex4UI;
-import edu.missouri.cf.projex4.ProjexViewProvider;
+import edu.missouri.operations.reportcenter.ReportcenterUI;
 
 @SuppressWarnings("serial")
 public class TopbarButton extends NativeButton {
 
-	private ProjexViewProvider.Views view;
+	private ReportCenterViewProvider.Views view;
 
 	private boolean contextNeeded = false;
 
-	public TopbarButton(ProjexViewProvider.Views view) {
+	public TopbarButton(ReportCenterViewProvider.Views view) {
 		super();
 		this.view = view;
 		init();
 	}
 
-	public TopbarButton(ProjexViewProvider.Views view, String caption) {
+	public TopbarButton(ReportCenterViewProvider.Views view, String caption) {
 		super(caption);
 		this.view = view;
 		init();
 	}
 
-	public TopbarButton(ProjexViewProvider.Views view, String caption, boolean contextNeeded) {
+	public TopbarButton(ReportCenterViewProvider.Views view, String caption, boolean contextNeeded) {
 		super(caption);
 		this.view = view;
 		this.contextNeeded = contextNeeded;
@@ -47,7 +46,7 @@ public class TopbarButton extends NativeButton {
 				}
 
 				addStyleName("selected");
-				Projex4UI.get().getProjexViewNavigator().navigateTo(view, fragment);
+				ReportcenterUI.get().getViewNavigator().navigateTo(view, fragment);
 			}
 		});
 

@@ -39,8 +39,8 @@ import edu.missouri.cf.projex4.system.Authenticator;
 import edu.missouri.cf.projex4.system.DummyAuthenticator;
 import edu.missouri.cf.projex4.system.InternalAuthenticator;
 import edu.missouri.cf.projex4.system.MicrosoftAuthenticator;
-import edu.missouri.cf.projex4.ui.desktop.NavigatorButton;
 import edu.missouri.cf.security.EnterpriseAuthenticator;
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
 
 @SuppressWarnings("serial")
 public class LoginViewOld extends VerticalLayout implements View {

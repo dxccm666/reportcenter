@@ -44,9 +44,9 @@ import edu.missouri.cf.projex4.data.system.core.LoginProvider;
 import edu.missouri.cf.projex4.data.system.core.LoginProviders;
 import edu.missouri.cf.projex4.data.system.properties.SystemProperties;
 import edu.missouri.cf.projex4.system.Authenticator;
-import edu.missouri.cf.projex4.ui.desktop.NavigatorButton;
 import edu.missouri.cf.security.EnterpriseAuthenticator;
 import edu.missouri.cf.security.UserLoginAuthenticator;
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
 
 @SuppressWarnings("serial")
 public class LoginView extends VerticalLayout implements View {

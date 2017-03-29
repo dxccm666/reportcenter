@@ -22,10 +22,10 @@ import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.ProjexViewProvider;
 import edu.missouri.cf.projex4.data.Pools;
 import edu.missouri.cf.projex4.data.system.User;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.system.Authenticator;
 import edu.missouri.cf.projex4.ui.desktop.LoginTopBarView;
 import edu.missouri.cf.security.EnterpriseAuthenticator;
+import edu.missouri.operations.reportcenter.data.Users;
 
 @SuppressWarnings("serial")
 public class InternalLoginView extends LoginTopBarView {

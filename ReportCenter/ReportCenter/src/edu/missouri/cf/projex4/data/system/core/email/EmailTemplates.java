@@ -27,7 +27,7 @@ public class EmailTemplates extends OracleQuery {
 	static Logger logger = LoggerFactory.getLogger(EmailTemplates.class);
 
 	public EmailTemplates() {
-		super(Pools.getConnectionPool(Pools.Names.PROJEX));
+		super(Pools.getConnectionPool(Pools.Names.REPORTCENTER));
 		setQueryString("select * from emailtemplates");
 		setRowQueryString("select * from emailtemplates where id = ?");
 		setPrimaryKeyColumns("ID");
@@ -83,7 +83,7 @@ public class EmailTemplates extends OracleQuery {
 		Connection conn = null;
 		String template = null;
 		try {
-			conn = Pools.getConnection(Pools.Names.PROJEX);
+			conn = Pools.getConnection(Pools.Names.REPORTCENTER);
 			try (PreparedStatement stmt = conn.prepareStatement("select content from emailtemplates where emailname = ?")) {
 				setString(stmt, 1, emailName);
 				try(ResultSet rs = stmt.executeQuery()) {
@@ -99,7 +99,7 @@ public class EmailTemplates extends OracleQuery {
 			}
 			
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, conn);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, conn);
 		}
 		return template;
 		

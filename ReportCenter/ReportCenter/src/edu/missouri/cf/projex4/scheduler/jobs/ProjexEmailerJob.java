@@ -171,7 +171,7 @@ public abstract class ProjexEmailerJob implements Job, ProjexJob {
 		try {
 
 			OracleDataSource odataSource = new OracleDataSource();
-			odataSource.setURL(Pools.projex4ConnectionString);
+			odataSource.setURL(Pools.dbConnectionString);
 			odataSource.setUser("projex4");
 			odataSource.setPassword("prj4_user");
 			dataSource = odataSource;

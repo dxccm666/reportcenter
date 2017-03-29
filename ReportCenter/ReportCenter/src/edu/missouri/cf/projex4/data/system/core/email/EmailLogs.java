@@ -24,7 +24,7 @@ public class EmailLogs extends OracleQuery {
 	static Logger logger = LoggerFactory.getLogger(EmailLogs.class);
 
 	public EmailLogs() {
-		super(Pools.getConnectionPool(Pools.Names.PROJEX));
+		super(Pools.getConnectionPool(Pools.Names.REPORTCENTER));
 		setQueryString("select * from emaillogs");
 		setRowQueryString("select * from emaillogs where id = ?");
 		setPrimaryKeyColumns("ID");

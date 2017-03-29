@@ -2,6 +2,8 @@ package edu.missouri.cf.projex4.ui.desktop;
 
 import com.vaadin.ui.Button;
 
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
+
 @SuppressWarnings("serial")
 public class SingleNavigatorButton extends NavigatorButton implements Button.ClickListener {
 

@@ -23,6 +23,7 @@ import edu.missouri.cf.projex4.EnumNavigator;
 import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.ProjexViewProvider;
 import edu.missouri.cf.projex4.data.system.User;
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
 
 /**
  * This is only a {@link PopupButton}. The ClickListener on this only opens up

@@ -23,8 +23,8 @@ import edu.missouri.cf.projex4.ProjexViewNavigator;
 import edu.missouri.cf.projex4.ProjexViewProvider;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
 import edu.missouri.cf.projex4.data.system.core.objects.Objects;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
 import edu.missouri.cf.projex4.ui.desktop.documents.PopupWindow;
+import edu.missouri.operations.reportcenter.data.SecurityGroups;
 
 @SuppressWarnings("serial")
 public class NewSecurityGroupnameWindow extends PopupWindow{

@@ -53,23 +53,17 @@ import edu.missouri.cf.projex4.data.common.Persons;
 import edu.missouri.cf.projex4.data.common.Phones;
 import edu.missouri.cf.projex4.data.projects.Projects;
 import edu.missouri.cf.projex4.data.system.User;
-import edu.missouri.cf.projex4.data.system.core.Campuses;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.core.ObjectClasses;
 import edu.missouri.cf.projex4.data.system.core.Roles;
 import edu.missouri.cf.projex4.data.system.core.Statuses;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroupUsers;
-import edu.missouri.cf.projex4.data.system.core.securitygroups.SecurityGroups;
-import edu.missouri.cf.projex4.data.system.core.users.CampusUsers;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.email.SendMail;
 import edu.missouri.cf.projex4.ui.c10n.ParticipantPersonsText;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.StandardTable;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
-import edu.missouri.cf.projex4.ui.desktop.filtertable.modulargenerator.ProjexCellStyleGenerator;
 import edu.missouri.cf.projex4.ui.desktop.lookups.Lookup;
 import edu.missouri.cf.projex4.ui.desktop.lookups.firms.FirmIdToStringConverter;
 import edu.missouri.cf.projex4.ui.desktop.lookups.persons.ExternalPersonEntryComponent;
@@ -79,6 +73,12 @@ import edu.missouri.cf.projex4.ui.desktop.lookups.persons.ParticipantPersonsComp
 import edu.missouri.cf.projex4.ui.desktop.lookups.persons.PersonIdToStringConverter;
 import edu.missouri.cf.projex4.ui.desktop.lookups.roles.RoleIdToStringConverter;
 import edu.missouri.cf.projex4.ui.desktop.lookups.status.StatusIdToStringConverter;
+import edu.missouri.operations.reportcenter.data.CampusUsers;
+import edu.missouri.operations.reportcenter.data.Campuses;
+import edu.missouri.operations.reportcenter.data.SecurityGroupUsers;
+import edu.missouri.operations.reportcenter.data.SecurityGroups;
+import edu.missouri.operations.reportcenter.data.Users;
+import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;
 
 @SuppressWarnings("serial")
 public class NewUserComponent extends TableDependentProjexEditor {
@@ -101,7 +101,7 @@ public class NewUserComponent extends TableDependentProjexEditor {
 		this.userAdded = userAdded;
 	}
 
-	class StyleGenerator extends ProjexCellStyleGenerator {
+	class StyleGenerator extends StandardCellStyleGenerator {
 
 		@Override
 		public String getAdditionalStyles(Table source, Object itemId, Object propertyId) {

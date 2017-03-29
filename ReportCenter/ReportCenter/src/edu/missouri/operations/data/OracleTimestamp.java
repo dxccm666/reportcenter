@@ -53,7 +53,7 @@ public class OracleTimestamp extends Timestamp {
 		Connection conn = null;
 		
 		try {
-			conn = Pools.getConnection(Pools.Names.PROJEX);
+			conn = Pools.getConnection(Pools.Names.REPORTCENTER);
 			
 			try (PreparedStatement stmt = conn.prepareStatement("select sysdate + ? from dual")) {
 				stmt.setInt(1, days);
@@ -72,7 +72,7 @@ public class OracleTimestamp extends Timestamp {
 			sqle.printStackTrace();
 			
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, conn);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, conn);
 		}
 		
 		return null;
@@ -84,7 +84,7 @@ public class OracleTimestamp extends Timestamp {
 		Connection conn = null;
 		
 		try {
-			conn = Pools.getConnection(Pools.Names.PROJEX);
+			conn = Pools.getConnection(Pools.Names.REPORTCENTER);
 			
 			try (PreparedStatement stmt = conn.prepareStatement("select ? + ? from dual")) {
 				
@@ -105,7 +105,7 @@ public class OracleTimestamp extends Timestamp {
 			sqle.printStackTrace();
 			
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, conn);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, conn);
 		}
 		
 		return null;
@@ -117,7 +117,7 @@ public class OracleTimestamp extends Timestamp {
 		Connection conn = null;
 		
 		try {
-			conn = Pools.getConnection(Pools.Names.PROJEX);
+			conn = Pools.getConnection(Pools.Names.REPORTCENTER);
 			
 			try (PreparedStatement stmt = conn.prepareStatement("select last_day(?) from dual")) {
 				
@@ -137,7 +137,7 @@ public class OracleTimestamp extends Timestamp {
 			sqle.printStackTrace();
 			
 		} finally {
-			Pools.releaseConnection(Pools.Names.PROJEX, conn);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, conn);
 		}
 		
 		return null;	

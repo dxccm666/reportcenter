@@ -4,6 +4,8 @@ import com.vaadin.data.Item;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
+import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
+
 
 /**
  * This is implemented on the navigator opener button. This is the default click listener on the opener button if no

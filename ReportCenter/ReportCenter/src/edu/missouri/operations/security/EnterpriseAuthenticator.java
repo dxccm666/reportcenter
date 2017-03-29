@@ -23,9 +23,9 @@ import com.unboundid.util.ssl.TrustAllTrustManager;
 import com.vaadin.ui.Notification;
 
 import edu.missouri.operations.reportcenter.Pools;
+import edu.missouri.operations.reportcenter.data.SystemProperties;
 import edu.missouri.operations.data.User;
 import edu.missouri.operations.data.User.UserAttribute;
-import edu.missouri.operations.data.system.properties.SystemProperties;
 
 public class EnterpriseAuthenticator implements Authenticator {
 
@@ -292,7 +292,7 @@ public class EnterpriseAuthenticator implements Authenticator {
 
 		try {
 
-			c = Pools.getConnection(Pools.Names.PROJEX);
+			c = Pools.getConnection(Pools.Names.REPORTCENTER);
 
 			try (PreparedStatement stmt = c
 					.prepareStatement("select * from userdetails where upper(userlogin) = upper(?) and isactive = 1")) {
@@ -442,7 +442,7 @@ public class EnterpriseAuthenticator implements Authenticator {
 												logger.debug("Updating password for {}", sso);
 											}
 
-											try (Connection conn = Pools.getConnection(Pools.Names.PROJEX)) {
+											try (Connection conn = Pools.getConnection(Pools.Names.REPORTCENTER)) {
 
 												try (PreparedStatement stmt = conn.prepareStatement(
 														"update users set password = ? where upper(userlogin) = upper(?)")) {
@@ -666,7 +666,7 @@ public class EnterpriseAuthenticator implements Authenticator {
 
 			}
 
-			Pools.releaseConnection(Pools.Names.PROJEX, c);
+			Pools.releaseConnection(Pools.Names.REPORTCENTER, c);
 		}
 
 		if (logger.isErrorEnabled()) {

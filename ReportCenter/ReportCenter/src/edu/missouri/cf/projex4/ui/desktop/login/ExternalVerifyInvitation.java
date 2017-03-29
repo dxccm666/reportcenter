@@ -20,8 +20,8 @@ import com.vaadin.ui.VerticalLayout;
 import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.ProjexViewProvider;
 import edu.missouri.cf.projex4.data.Pools;
-import edu.missouri.cf.projex4.data.system.core.users.Users;
 import edu.missouri.cf.projex4.ui.desktop.LoginTopBarView;
+import edu.missouri.operations.reportcenter.data.Users;
 
 @SuppressWarnings("serial")
 public class ExternalVerifyInvitation extends LoginTopBarView {
