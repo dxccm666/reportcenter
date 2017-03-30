@@ -37,7 +37,6 @@ import edu.missouri.cf.projex4.data.reports.Reports;
 import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.properties.SystemProperties;
-import edu.missouri.cf.projex4.ui.c10n.configuration.ReportEditorText;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.OraclePopupDateField;
 import edu.missouri.cf.projex4.ui.common.OracleStringTextArea;
@@ -49,6 +48,7 @@ import edu.missouri.cf.projex4.ui.desktop.documents.ProjexFileDetailBean;
 import edu.missouri.cf.projex4.ui.desktop.documents.ProjexUploadFinishedHandler;
 import edu.missouri.cf.projex4.ui.desktop.lookups.ApplicationComboBox;
 import edu.missouri.cf.projex4.ui.desktop.lookups.persons.UserPersonField;
+import edu.missouri.operations.reportcenter.ui.c10n.configuration.ReportEditorText;
 
 /**
  * @author graumannc

@@ -3,8 +3,7 @@ package edu.missouri.operations.ui.desktop.buttons;
 import java.util.Locale;
 
 import c10n.C10N;
-
-import edu.missouri.cf.projex4.ui.c10n.StandardButtonText;
+import edu.missouri.operations.reportcenter.ui.c10n.StandardButtonText;
 import edu.missouri.operations.ui.EnumNavigator;
 
 @SuppressWarnings("serial")

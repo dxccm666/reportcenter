@@ -1,12 +1,11 @@
 package edu.missouri.operations.ui.desktop.buttons;
 
 import c10n.C10N;
+import edu.missouri.operations.reportcenter.ui.c10n.StandardButtonText;
 
 import java.util.Locale;
 
 import com.vaadin.ui.Button;
-
-import edu.missouri.cf.projex4.ui.c10n.StandardButtonText;
 
 @SuppressWarnings("serial")
 public class DeleteButton extends Button {

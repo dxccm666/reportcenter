@@ -31,7 +31,7 @@ import edu.missouri.operatons.data.OracleString;
 import edu.missouri.cf.projex4.Projex4UI;
 import edu.missouri.cf.projex4.data.reports.ReportCronTasks;
 import edu.missouri.operations.data.User;
-import edu.missouri.cf.projex4.ui.c10n.configuration.ReportCronTaskText;
+import edu.missouri.operations.reportcenter.ui.c10n.configuration.ReportCronTaskText;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.OracleTimestampField;
 import edu.missouri.cf.projex4.ui.desktop.StandardEditorView;

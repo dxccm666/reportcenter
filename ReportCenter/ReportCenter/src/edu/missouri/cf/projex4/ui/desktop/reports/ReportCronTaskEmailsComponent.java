@@ -16,8 +16,8 @@ import com.vaadin.ui.Button.ClickEvent;
 import edu.missouri.operations.data.OracleString;
 import edu.missouri.cf.projex4.data.reports.ReportCronTaskEmails;
 import edu.missouri.operations.data.User;
+import edu.missouri.operations.reportcenter.ui.c10n.configuration.ReportCronTaskEmailsText;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.ui.c10n.configuration.ReportCronTaskEmailsText;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
 

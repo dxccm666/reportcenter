@@ -14,9 +14,9 @@ import edu.missouri.cf.projex4.data.reports.ReportModificationHistory;
 import edu.missouri.cf.projex4.data.system.User;
 import edu.missouri.cf.projex4.data.system.core.Loggers;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.ui.c10n.configuration.ReportModificationHistoryTableText;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
+import edu.missouri.operations.reportcenter.ui.c10n.configuration.ReportModificationHistoryTableText;
 
 @SuppressWarnings("serial")
 public class ReportModificationHistoryComponent extends TableDependentProjexEditor {

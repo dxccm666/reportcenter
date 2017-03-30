@@ -19,10 +19,8 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.VerticalLayout;
 
-import edu.missouri.cf.projex4.EnumNavigator;
-import edu.missouri.cf.projex4.Projex4UI;
-import edu.missouri.cf.projex4.ProjexViewProvider;
-import edu.missouri.cf.projex4.data.system.User;
+import edu.missouri.operations.data.User;
+import edu.missouri.operations.ui.EnumNavigator;
 import edu.missouri.operations.ui.desktop.buttons.NavigatorButton;
 
 /**
@@ -158,7 +156,7 @@ public class NavigatorOpenerButton extends PopupButton {
 	 *            {@link TableClickListener}
 	 */
 	public void addComponent(Enum<?> viewName, String description, TableClickListener tableClickListener) {
-		NavigatorButton button = new NavigatorButton(viewName, description);
+		NavigatorButton button = new NavigatorButton(navigator, viewName, description);
 		enums.add(viewName);
 		button.setNavigator(navigator);
 		button.addClickListener(clicklistener);
@@ -175,7 +173,7 @@ public class NavigatorOpenerButton extends PopupButton {
 
 	}
 
-	public NavigatorButton getNavigatorButton(ProjexViewProvider.Views view) {
+	public NavigatorButton getNavigatorButton(Enum<?> view) {
 		return buttons.get(view);
 	}
 
@@ -191,7 +189,7 @@ public class NavigatorOpenerButton extends PopupButton {
 
 	}
 
-	public void setVisible(ProjexViewProvider.Views viewName, boolean enabled) {
+	public void setVisible(Enum<?> viewName, boolean enabled) {
 
 		if (viewName != null && buttons.get(viewName) != null) {
 			buttons.get(viewName).setVisible(enabled);
@@ -200,21 +198,21 @@ public class NavigatorOpenerButton extends PopupButton {
 
 	}
 
-	public void setVisible(ArrayList<ProjexViewProvider.Views> viewList, boolean enabled) {
+	public void setVisible(ArrayList<Enum<?>> viewList, boolean enabled) {
 
-		for (ProjexViewProvider.Views view : viewList) {
+		for (Enum<?> view : viewList) {
 			setVisible(view, enabled);
 		}
 
 	}
 
-	public void setEnabled(ProjexViewProvider.Views viewName, boolean enabled) {
+	public void setEnabled(Enum<?> viewName, boolean enabled) {
 		buttons.get(viewName).setEnabled(enabled);
 	}
 
-	public void setEnabled(ArrayList<ProjexViewProvider.Views> viewList, boolean enabled) {
+	public void setEnabled(ArrayList<Enum<?>> viewList, boolean enabled) {
 
-		for (ProjexViewProvider.Views view : viewList) {
+		for (Enum<?> view : viewList) {
 			setEnabled(view, enabled);
 		}
 
@@ -235,7 +233,7 @@ public class NavigatorOpenerButton extends PopupButton {
 	private void init() {
 
 		buttons = new LinkedHashMap<Enum<?>, NavigatorButton>();
-		setIcon(Projex4UI.iconSet.get("folder"));
+		// setIcon(Projex4UI.iconSet.get("folder"));
 		addStyleName("borderless");
 		setImmediate(true);
 
@@ -247,7 +245,7 @@ public class NavigatorOpenerButton extends PopupButton {
 
 		content.addStyleName("buttonopener");
 		setContent(content);
-		setNavigator(Projex4UI.get().getProjexViewNavigator());
+		// setNavigator(Projex4UI.get().getProjexViewNavigator());
 
 	}
 

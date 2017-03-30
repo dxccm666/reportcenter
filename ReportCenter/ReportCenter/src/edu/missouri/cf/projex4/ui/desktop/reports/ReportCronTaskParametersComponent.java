@@ -12,8 +12,8 @@ import com.vaadin.data.util.sqlcontainer.query.OrderBy;
 
 import edu.missouri.cf.projex4.data.reports.ReportCronTaskParameters;
 import edu.missouri.operations.data.User;
+import edu.missouri.operations.reportcenter.ui.c10n.configuration.ReportRunParametersTableText;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
-import edu.missouri.cf.projex4.ui.c10n.configuration.ReportRunParametersTableText;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.TableDependentProjexEditor;
 

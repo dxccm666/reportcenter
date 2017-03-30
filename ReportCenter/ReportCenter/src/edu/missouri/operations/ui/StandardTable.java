@@ -5,22 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Locale;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tepi.filtertable.FilterTable;
-import c10n.C10N;
-
 import com.vaadin.data.Container;
 import com.vaadin.server.Page;
 
-import edu.missouri.cf.projex4.ui.c10n.CommonText;
-import edu.missouri.cf.projex4.ui.common.OracleFieldFactory;
-import edu.missouri.cf.projex4.ui.common.TableColumn;
-import edu.missouri.cf.projex4.ui.common.TableColumns;
 import edu.missouri.operations.data.User;
 import edu.missouri.operations.reportcenter.Pools;
 import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;

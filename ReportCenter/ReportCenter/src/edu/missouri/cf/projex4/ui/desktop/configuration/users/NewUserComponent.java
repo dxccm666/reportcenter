@@ -59,7 +59,6 @@ import edu.missouri.cf.projex4.data.system.core.Roles;
 import edu.missouri.cf.projex4.data.system.core.Statuses;
 import edu.missouri.cf.projex4.data.system.core.objects.ObjectData;
 import edu.missouri.cf.projex4.email.SendMail;
-import edu.missouri.cf.projex4.ui.c10n.ParticipantPersonsText;
 import edu.missouri.cf.projex4.ui.common.OracleBooleanCheckBox;
 import edu.missouri.cf.projex4.ui.common.TableColumn;
 import edu.missouri.cf.projex4.ui.desktop.StandardTable;
@@ -78,6 +77,7 @@ import edu.missouri.operations.reportcenter.data.Campuses;
 import edu.missouri.operations.reportcenter.data.SecurityGroupUsers;
 import edu.missouri.operations.reportcenter.data.SecurityGroups;
 import edu.missouri.operations.reportcenter.data.Users;
+import edu.missouri.operations.reportcenter.ui.c10n.ParticipantPersonsText;
 import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;
 
 @SuppressWarnings("serial")

@@ -22,9 +22,10 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import edu.missouri.cf.projex4.ui.c10n.TopBarText;
+
 import edu.missouri.operations.data.User;
 import edu.missouri.operations.reportcenter.data.SecurityGroupUsers;
+import edu.missouri.operations.reportcenter.ui.c10n.TopBarText;
 
 /**
  * @author graumannc
