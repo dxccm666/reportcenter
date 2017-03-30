@@ -1,4 +1,4 @@
-package edu.missouri.cf.projex4.ui.desktop;
+package edu.missouri.operations.ui.desktop.buttons;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,7 +44,7 @@ public class NavigatorOpenerButton extends PopupButton {
 	String urifragment;
 	AbstractSelect table;
 	private String screenName;
-	private EnumNavigator navigator;
+	protected EnumNavigator navigator;
 
 	public AbstractSelect getTable() {
 		return table;

@@ -2601,7 +2601,8 @@ public class VScrollTable extends FlowPanel implements HasWidgets,
 
         @Override
         public void run() {
-            if ((client).hasActiveRequest() || navKeyDown) {
+            if (navKeyDown) {
+            	// if ((client).hasActiveRequest() || navKeyDown) {
                 // if client connection is busy, don't bother loading it more
                 VConsole.log("Postponed rowfetch");
                 schedule(250);
