@@ -8,6 +8,7 @@ import com.vaadin.navigator.ViewProvider;
 import com.vaadin.ui.UI;
 
 import edu.missouri.operations.reportcenter.ui.views.DefaultView;
+import edu.missouri.operations.reportcenter.ui.views.main.MainView;
 
 @SuppressWarnings("serial")
 public class ReportCenterViewProvider implements ViewProvider {
@@ -70,13 +71,15 @@ public class ReportCenterViewProvider implements ViewProvider {
 
 		switch (view) {
 		case HOME:
-			// return new HomeView();
+			 return new MainView();
+			 
+			 
 		case LOGIN:
 			// return new LoginView();
 			// return loginView;
 			
 		default:
-			return new DefaultView();
+			return new MainView();
 		}
 	}
 

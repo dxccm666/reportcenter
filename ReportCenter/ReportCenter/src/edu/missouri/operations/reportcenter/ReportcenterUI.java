@@ -17,6 +17,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 
 import edu.missouri.operations.data.OracleConverterFactory;
+import edu.missouri.operations.reportcenter.ui.IconSet;
 import edu.missouri.operations.reportcenter.ui.ReportCenterViewNavigator;
 import edu.missouri.operations.reportcenter.ui.ReportCenterViewProvider;
 
@@ -36,6 +37,8 @@ public class ReportcenterUI extends UI {
 	
 	private ReportCenterViewNavigator navigator;
 	private ReportCenterViewProvider viewProvider;
+	
+	public final static IconSet iconSet = new IconSet();
 	
 	public static IReportEngine getReportEngine() {
 		return (IReportEngine) VaadinServlet.getCurrent().getServletContext().getAttribute("REPORTENGINE");

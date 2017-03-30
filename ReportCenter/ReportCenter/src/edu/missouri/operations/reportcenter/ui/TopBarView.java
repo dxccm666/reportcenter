@@ -13,6 +13,7 @@ import c10n.C10N;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
@@ -46,6 +47,8 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 	protected VerticalLayout notificationLayout;
 
+	private Label copyright;
+
 	public void trace(String message) {
 
 		if (logger.isDebugEnabled()) {
@@ -69,16 +72,15 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 		super.attach();
 		view = this;
-		
-		if(!SecurityGroupUsers.memberOf("ADMINISTRATORS",User.getUser().getUserId())) {
+
+		if (User.getUser() != null && !SecurityGroupUsers.memberOf("ADMINISTRATORS", User.getUser().getUserId())) {
 			configurationButton.setVisible(false);
 			configurationButton.setEnabled(false);
 		}
-		
-		//TODO Remove after security is set up.
+
+		// TODO Remove after security is set up.
 		configurationButton.setVisible(true);
 		configurationButton.setEnabled(true);
-		
 
 	}
 
@@ -96,17 +98,17 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 		topBarText = C10N.get(TopBarText.class, Locale.ENGLISH);
 
-		homeButton = new TopbarButton(ReportCenterViewProvider.Views.HOME) {
+		homeButton = new TopbarButton(ReportCenterViewProvider.Views.HOME, "Operations ReportCenter") {
 			{
-				addStyleName("logo");
-				setIcon(new ThemeResource("images/projextblogo_topbar.png"));
+				addStyleName("topbarbutton borderless");
+				setIcon(new ThemeResource("images/mulogotb.png"));
 				setDescription(topBarText.projectsHome());
 			}
 		};
-		
+
 		configurationButton = new TopbarButton(ReportCenterViewProvider.Views.CONFIGURATION, topBarText.configuration()) {
 			{
-				addStyleName("icon-configuration");
+				addStyleName("topbarbutton borderless");
 				setIcon(new ThemeResource("icons/chalkwork/basic/settings_16x16.png"));
 				setDescription(topBarText.configuration_help());
 			}
@@ -114,7 +116,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 		logoffButton = new NativeButton(topBarText.signOff()) {
 			{
-				addStyleName("icon-logout");
+				addStyleName("topbarbutton borderless");
 				setIcon(new ThemeResource("icons/general/small/Sign_Out.png"));
 				setDescription(topBarText.signOff_help());
 
@@ -135,18 +137,27 @@ public abstract class TopBarView extends VerticalLayout implements View {
 			}
 		};
 
+		copyright = new Label("&copy; 2017 — Curators of the University of Missouri. All rights reserved. An equal opportunity/access/affirmative action/pro-disabled and veteran employer.",
+				ContentMode.HTML) {
+			{
+				addStyleName("copyright");
+			}
+		};
+
 	}
+
+	Component innerComponent;
 
 	private void layout() {
 
 		setSizeFull();
-		addStyleName("bordered mainscreen");
+		// addStyleName("bordered mainscreen");
 		setMargin(false);
 
 		// start of button bar
 		addComponent(new HorizontalLayout() {
 			{
-				addStyleName("sidebar");
+				addStyleName("topbar");
 				setWidth("100%");
 
 				CssLayout menu = new CssLayout() {
@@ -154,7 +165,6 @@ public abstract class TopBarView extends VerticalLayout implements View {
 						addStyleName("menu");
 						setWidth("100%");
 						addComponent(homeButton);
-						addComponent(configurationButton);
 
 					}
 				};
@@ -164,6 +174,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 				CssLayout menu2 = new CssLayout() {
 					{
 						addStyleName("menu");
+						addComponent(configurationButton);
 						addComponent(logoffButton);
 					}
 				};
@@ -173,6 +184,24 @@ public abstract class TopBarView extends VerticalLayout implements View {
 			}
 		});
 
+		innerComponent = new Label("");
+
+		addComponent(innerComponent);
+		setExpandRatio(innerComponent, 1.0f);
+
+		addComponent(new HorizontalLayout() {
+			{
+				addStyleName("bottombar");
+				setWidth("100%");
+				addComponent(copyright);
+			}
+		});
+
+	}
+
+	public void addInnerComponent(Component c) {
+		replaceComponent(innerComponent, c);
+		innerComponent = c;
 	}
 
 	public Component addNotification(String message) {
@@ -186,7 +215,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 			}
 		};
-		
+
 		Button closeButton = new Button() {
 			{
 				setIcon(new ThemeResource("icons/special/notification_close.png"));

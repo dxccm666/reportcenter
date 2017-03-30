@@ -999,7 +999,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.7.7";
+	content: "7.7.8";
 }
 
 .v-widget {
@@ -12983,4 +12983,37 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 	width: 19px;
 	overflow: hidden;
+}
+
+.reportcenter .topbar {
+	background-color: black;
+	border-bottom: 2px solid #f1b82d;
+}
+
+.reportcenter .bottombar {
+	background-color: black;
+	border-top: 2px solid #f1b82d;
+}
+
+.reportcenter .copyright {
+	color: white;
+	padding-left: 6px;
+	font-size: 0.8em;
+}
+
+.reportcenter .maintitle {
+	font-size: 2em;
+	font-weight: bold;
+	padding-left: 12px;
+}
+
+.reportcenter .instructions {
+	padding-left: 12px;
+}
+
+.reportcenter .topbarbutton {
+	background-color: black;
+	color: white;
+	border: none;
+	font-weight: bold;
 }

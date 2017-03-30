@@ -11,9 +11,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.SingleComponentContainer;
 import com.vaadin.ui.UI;
 
-import edu.missouri.cf.projex4.ui.desktop.EditingStateManipulator;
-import edu.missouri.cf.projex4.ui.desktop.EditingStateManipulator.EditingState;
-import edu.missouri.cf.projex4.ui.desktop.login.LoginView;
 import edu.missouri.operations.data.User;
 import edu.missouri.operations.reportcenter.ReportcenterUI;
 import edu.missouri.operations.reportcenter.ui.views.ErrorView;
@@ -70,6 +67,8 @@ public class ReportCenterViewNavigator extends EnumNavigator {
 				logger.debug("screenswitcher.ViewChangeListener.beforeViewChange parameters = " + event.getParameters());
 				logger.debug("viewName = {}", event.getViewName());
 				
+				/*
+				
 				if (User.getUser() == null && ((ReportCenterViewProvider)getProvider()).requireLogin(event.getViewName())) {
 					logger.debug("User is not logged in");
 					String fragmentAndParameters = event.getViewName();
@@ -80,10 +79,13 @@ public class ReportCenterViewNavigator extends EnumNavigator {
 					return false;
 				}				
 				
+				*/
+				
 				// This should stop the screen switch if the current screen is
 				// in Editing Mode.
 				// TODO We should make this a pretty notification.
-				
+			
+				/*
 				if (event.getOldView() instanceof EditingStateManipulator && ((EditingStateManipulator) event.getOldView()).getEditingState() == EditingState.EDITING) {
 					logger.debug("Screen is in editing mode.  Refusing to switch to new screen.");
 					
@@ -95,6 +97,8 @@ public class ReportCenterViewNavigator extends EnumNavigator {
 					logger.debug("Screen can be switched.");
 					return true;
 				}
+				*/
+				return true;
 			}
 
 			@Override

@@ -33,4 +33,43 @@
   @include valo;
 
   // Insert your own theme rules here
+  
+  .topbar {
+  		background-color: black;
+  		border-bottom: 2px solid #f1b82d;
+  }
+  
+  .bottombar {
+  		background-color: black;
+  		border-top: 2px solid #f1b82d;
+  }
+  
+  .copyright {
+  		color: white;
+  		padding-left: 6px;
+  		font-size: 0.8em;
+  }
+  
+  .maintitle {
+  
+  	font-size: 2em;
+  	font-weight: bold;
+  	padding-left: 12px;
+  
+  }
+  
+  .instructions {
+  
+  	padding-left: 12px;
+  
+  }
+  
+  .topbarbutton {
+  		background-color: black;
+  		color: white;
+  		border: none;
+  		font-weight: bold;
+  }
+  
+  
 }
