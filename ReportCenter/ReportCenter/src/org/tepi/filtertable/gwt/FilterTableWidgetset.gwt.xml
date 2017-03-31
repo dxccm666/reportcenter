@@ -23,4 +23,6 @@
     
 
     
+
+    <inherits name="org.vaadin.hene.flexibleoptiongroup.widgetset.FlexibleOptionGroupWidgetset" />
 </module>

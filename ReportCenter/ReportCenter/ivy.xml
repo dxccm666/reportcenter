@@ -109,5 +109,7 @@
 		<!-- Expanding Text Area -->	
 		<dependency org="org.vaadin.addons" name="expandingtextarea" rev="1.2.0" />
 		
+		<!-- Flexible Option Group -->
+		<dependency org="org.vaadin.addons" name="flexibleoptiongroup" rev="2.3.0" />	
 	</dependencies>
 </ivy-module>

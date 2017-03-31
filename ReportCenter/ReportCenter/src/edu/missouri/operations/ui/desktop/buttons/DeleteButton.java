@@ -1,6 +1,7 @@
 package edu.missouri.operations.ui.desktop.buttons;
 
 import c10n.C10N;
+import edu.missouri.operations.reportcenter.ReportcenterUI;
 import edu.missouri.operations.reportcenter.ui.c10n.StandardButtonText;
 
 import java.util.Locale;
@@ -20,7 +21,7 @@ public class DeleteButton extends Button {
 		st = C10N.get(StandardButtonText.class, Locale.ENGLISH);
 		setCaption(st.deleteButton());
 		setDescription(st.deleteButton_help());
-		// setIcon(Projex4UI.iconSet.get("delete"));
+		setIcon(ReportcenterUI.iconSet.get("delete"));
 		addStyleName("borderless");
 	}
 

@@ -11,15 +11,18 @@ import com.vaadin.ui.Label;
 
 import edu.missouri.operations.reportcenter.ui.TopBarView;
 import edu.missouri.operations.ui.StandardTable;
+import edu.missouri.operations.ui.desktop.buttons.DeleteButton;
+import edu.missouri.operations.ui.desktop.buttons.RescheduleButton;
+import edu.missouri.operations.ui.desktop.buttons.RunButton;
 
 public class MainView extends TopBarView {
 
 	private TabSheet tabs;
 	private StandardTable reports;
 	private StandardTable scheduledReports;
-	private Button reportButton;
-	private Button rescheduleReportButton;
-	private Button deleteScheduledReportButton;
+	private RunButton reportButton;
+	private RescheduleButton rescheduleReportButton;
+	private DeleteButton deleteScheduledReportButton;
 
 	public MainView() {
 	}
@@ -44,7 +47,7 @@ public class MainView extends TopBarView {
 			}
 		};
 
-		reportButton = new Button() {
+		reportButton = new RunButton() {
 			{
 				setCaption("run");
 				setDescription("run selected report");
@@ -60,7 +63,7 @@ public class MainView extends TopBarView {
 			}
 		};
 
-		rescheduleReportButton = new Button() {
+		rescheduleReportButton = new RescheduleButton() {
 			{
 				setCaption("reschedule");
 				setDescription("adjust schedule of selected report");
@@ -75,7 +78,7 @@ public class MainView extends TopBarView {
 			}
 		};
 
-		deleteScheduledReportButton = new Button() {
+		deleteScheduledReportButton = new DeleteButton() {
 			{
 				setCaption("delete");
 				setDescription("delete selected scheduled report.");
@@ -140,7 +143,6 @@ public class MainView extends TopBarView {
 			}
 		};
 		addInnerComponent(layout);
-		setExpandRatio(layout, 1.0f);
 
 	}
 

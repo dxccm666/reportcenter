@@ -8,6 +8,16 @@ import com.vaadin.navigator.ViewProvider;
 import com.vaadin.ui.UI;
 
 import edu.missouri.operations.reportcenter.ui.views.DefaultView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.ConfigurationView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.email.EmailLogsView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.email.EmailTemplatesView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.lists.ListsView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.properties.SystemPropertiesView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.reports.ReportsView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.reports.ScheduledReportsView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.scheduledtasks.ScheduledTasksView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.securitygroups.SecurityGroupsView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.users.UsersView;
 import edu.missouri.operations.reportcenter.ui.views.main.MainView;
 
 @SuppressWarnings("serial")
@@ -18,7 +28,8 @@ public class ReportCenterViewProvider implements ViewProvider {
 	public enum Views {
 		DEFAULT, HOME, LOGIN, CONFIGURATION, SYSTEMPROPERTIES, 
 		USERS, USEREDITOR, SECURITYGROUPS, SECURITYGROUPEDITOR, 
-		REPORTS, REPORTEDITOR, LISTS
+		REPORTS, REPORTEDITOR, LISTS, EMAILTEMPLATES, EMAILTEMPLATEEDITOR, 
+		EMAILLOGS, SCHEDULEDREPORTS, SCHEDULEDTASKS
 	}
 
 	public ReportCenterViewProvider() { }
@@ -72,13 +83,31 @@ public class ReportCenterViewProvider implements ViewProvider {
 		switch (view) {
 		case HOME:
 			 return new MainView();
-			 
+		case CONFIGURATION :
+			return new ConfigurationView();
+		case SYSTEMPROPERTIES :
+			return new SystemPropertiesView();
+		case LISTS :
+			return new ListsView();
+		case EMAILTEMPLATES :
+			return new EmailTemplatesView();
+		case USERS:
+			return new UsersView();
+		case SECURITYGROUPS:
+			return new SecurityGroupsView();
+		case REPORTS:
+			return new ReportsView();
+		case SCHEDULEDREPORTS:
+			return new ScheduledReportsView();
+		case EMAILLOGS :
+			return new EmailLogsView();
+		case SCHEDULEDTASKS :
+			return new ScheduledTasksView();
 			 
 		case LOGIN:
 			// return new LoginView();
-			// return loginView;
-			
 		default:
+			// return new LoginView();
 			return new MainView();
 		}
 	}

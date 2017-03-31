@@ -201,6 +201,7 @@ public abstract class TopBarView extends VerticalLayout implements View {
 
 	public void addInnerComponent(Component c) {
 		replaceComponent(innerComponent, c);
+		setExpandRatio(c, 1.0f);
 		innerComponent = c;
 	}
 

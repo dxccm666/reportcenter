@@ -74,6 +74,30 @@ public interface StandardButtonText {
 	@En("")
 	String deleteButton_help();
 	
+	@En("reassign")
+	String reassignButton();
+	
+	@En("")
+	String reassignButton_help();
+	
+	@En("schedule")
+	String scheduleButton();
+	
+	@En("")
+	String scheduleButton_help();
+	
+	@En("reschedule")
+	String rescheduleButton();
+	
+	@En("")
+	String rescheduleButton_help();
+	
+	@En("run")
+	String runButton();
+	
+	@En("")
+	String runButton_help();
+	
 	@En("You must save the current record before navigating")
 	String navigationMessage();
 	

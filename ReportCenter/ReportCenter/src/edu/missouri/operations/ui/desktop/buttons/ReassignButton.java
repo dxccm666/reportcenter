@@ -9,19 +9,19 @@ import java.util.Locale;
 import com.vaadin.ui.Button;
 
 @SuppressWarnings("serial")
-public class AddButton extends Button {
+public class ReassignButton extends Button {
 
 	private StandardButtonText st;
 
-	public AddButton() {
+	public ReassignButton() {
 		init();
 	}
 
 	private void init() {
 		st = C10N.get(StandardButtonText.class, Locale.ENGLISH);
-		setCaption(st.addButton());
-		setDescription(st.addButton_help());
-		setIcon(ReportcenterUI.iconSet.get("add"));
+		setCaption(st.reassignButton());
+		setDescription(st.reassignButton_help());
+		setIcon(ReportcenterUI.iconSet.get("reassign"));
 		addStyleName("borderless");
 	}
 

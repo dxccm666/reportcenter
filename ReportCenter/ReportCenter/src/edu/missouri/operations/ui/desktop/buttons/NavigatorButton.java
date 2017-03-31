@@ -5,11 +5,11 @@ import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import com.vaadin.ui.Button;
 import edu.missouri.operations.ui.EnumNavigator;
 
 @SuppressWarnings("serial")
-public class NavigatorButton extends TableButton {
+public class NavigatorButton extends TableButton implements Button.ClickListener {
 	
 	// table button contains the table now.
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -30,6 +30,7 @@ public class NavigatorButton extends TableButton {
 		setImmediate(true);
 		setView(view);
 		setNavigator(navigator);
+		setClickListener(this);
 	}
 
 	public NavigatorButton(EnumNavigator navigator, Enum<?> view, String caption) {
@@ -38,6 +39,7 @@ public class NavigatorButton extends TableButton {
 		setImmediate(true);
 		setView(view);
 		setNavigator(navigator);
+		setClickListener(this);
 	}
 
 	public NavigatorButton(EnumNavigator navigator, Enum<?> view, String caption, ClickListener listener) {
@@ -46,6 +48,7 @@ public class NavigatorButton extends TableButton {
 		setImmediate(true);
 		setView(view);
 		setNavigator(navigator);
+		setClickListener(listener);
 	}
 	
 	public Enum<?> getView() {
@@ -95,12 +98,21 @@ public class NavigatorButton extends TableButton {
 		addClickListener(listener);
 	}
 	
+	public void navigateTo() {
+		getNavigator().navigateTo(getView(), getUriFragment());
+	}
+	
 	public void navigateTo(String fragment) {
 		getNavigator().navigateTo(getView(), fragment);
 	}
 	
 	public String getUrl(String fragment) {
 		return getNavigator().getUrl(getView(), fragment);
+	}
+
+	@Override
+	public void buttonClick(ClickEvent event) {
+		navigateTo();
 	}
 
 }

@@ -13004,7 +13004,9 @@ div.v-layout.v-horizontal.v-widget {
 .reportcenter .maintitle {
 	font-size: 2em;
 	font-weight: bold;
+	text-decoration: underline;
 	padding-left: 12px;
+	padding-bottom: 6px;
 }
 
 .reportcenter .instructions {
