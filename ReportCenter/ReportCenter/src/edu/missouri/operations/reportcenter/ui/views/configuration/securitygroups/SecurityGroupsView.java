@@ -1,5 +1,8 @@
 package edu.missouri.operations.reportcenter.ui.views.configuration.securitygroups;
 
+import java.sql.SQLException;
+
+import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Component;
@@ -7,8 +10,10 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.missouri.operations.reportcenter.data.SecurityGroups;
 import edu.missouri.operations.reportcenter.ui.TopBarView;
 import edu.missouri.operations.ui.StandardTable;
+import edu.missouri.operations.ui.TableColumn;
 import edu.missouri.operations.ui.desktop.buttons.AddButton;
 import edu.missouri.operations.ui.desktop.buttons.DeleteButton;
 import edu.missouri.operations.ui.desktop.buttons.EditButton;
@@ -34,7 +39,10 @@ public class SecurityGroupsView extends TopBarView {
 
 		properties = new StandardTable() {
 			{
-
+				add(new TableColumn("SECURITYGROUPNAME", "Name").setExpandRatio(0.30f));
+				add(new TableColumn("DESCRIPTION", "Description").setExpandRatio(0.70f));
+				add(new TableColumn("ISACTIVE", "Active?").setWidth(100));
+				add(new TableColumn("MODIFIED", "Modified").setWidth(150));
 			}
 		};
 
@@ -77,7 +85,17 @@ public class SecurityGroupsView extends TopBarView {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
+
+		try {
+
+			SecurityGroups query = new SecurityGroups();
+			OracleContainer container = new OracleContainer(query);
+			properties.setContainerDataSource(container);
+			properties.configure();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
