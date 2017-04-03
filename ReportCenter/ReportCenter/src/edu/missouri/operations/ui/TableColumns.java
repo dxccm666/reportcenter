@@ -13,8 +13,6 @@ import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.ui.Table.CellStyleGenerator;
 import com.vaadin.ui.TableFieldFactory;
 
-import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;
-
 
 /**
  * Class for standardized system for setting table headers, widths and column
@@ -116,6 +114,8 @@ public class TableColumns extends LinkedHashMap<String, TableColumn> {
 
 			}
 			
+			/*
+			
 			if (generator instanceof StandardCellStyleGenerator) {
 
 				if (c.getStyles() != null) {
@@ -123,6 +123,8 @@ public class TableColumns extends LinkedHashMap<String, TableColumn> {
 				}
 
 			}
+			
+			*/
 
 			if (container instanceof OracleContainer) {
 

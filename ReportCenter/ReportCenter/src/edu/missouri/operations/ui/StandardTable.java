@@ -8,17 +8,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tepi.filtertable.FilterTable;
 import com.vaadin.data.Container;
 import com.vaadin.server.Page;
+import com.vaadin.ui.Table;
 
 import edu.missouri.operations.data.User;
 import edu.missouri.operations.reportcenter.Pools;
-import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardCellStyleGenerator;
-import edu.missouri.operations.ui.desktop.filtertable.modulargenerator.StandardFilterFieldGenerator;
 
 @SuppressWarnings("serial")
-public class StandardTable extends FilterTable {
+public class StandardTable extends Table {
 
 	TableColumns columns;
 
@@ -70,13 +68,13 @@ public class StandardTable extends FilterTable {
 
 	private void init(boolean useFilterFieldGenerator) {
 
-		if (useFilterFieldGenerator) {
-			setFilterFieldGenerator(new StandardFilterFieldGenerator(this));
-			setCellStyleGenerator(new StandardCellStyleGenerator());
-		}
+		//if (useFilterFieldGenerator) {
+			// setFilterFieldGenerator(new StandardFilterFieldGenerator(this));
+		//	setCellStyleGenerator(new StandardCellStyleGenerator());
+		// }
 		setTableFieldFactory(new OracleFieldFactory());
 		setImmediate(true);
-		setFilterBarVisible(true);
+		// setFilterBarVisible(true);
 		setSelectable(true);
 		setMultiSelect(true);
 		addStyleName("projectlisting_table");
