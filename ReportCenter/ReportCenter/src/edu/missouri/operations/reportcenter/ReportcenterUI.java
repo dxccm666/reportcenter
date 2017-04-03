@@ -24,6 +24,9 @@ import edu.missouri.operations.reportcenter.ui.ReportCenterViewProvider;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import c10n.C10N;
+import c10n.annotations.DefaultC10NAnnotations;
+
 @SuppressWarnings("serial")
 @Theme("reportcenter")
 @Push
@@ -52,6 +55,8 @@ public class ReportcenterUI extends UI {
 	protected void init(VaadinRequest request) {
 		
 		getSession().setConverterFactory(new OracleConverterFactory());	
+		
+		C10N.configure(new DefaultC10NAnnotations());
 		
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
