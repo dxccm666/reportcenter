@@ -20,14 +20,14 @@ import edu.missouri.operations.reportcenter.Pools;
  *
  */
 @SuppressWarnings("serial")
-public class ReportsRunHistory extends OracleQuery {
+public class ReportParameters extends OracleQuery {
 
-	static final transient Logger logger = LoggerFactory.getLogger(ReportsRunHistory.class);
+	static final transient Logger logger = LoggerFactory.getLogger(ReportParameters.class);
 
-	public ReportsRunHistory() {
+	public ReportParameters() {
 		super(Pools.getConnectionPool(Pools.Names.REPORTCENTER));
-		setQueryString("select * from reportrunhistory");
-		setRowQueryString("select * from reportrunhistory where id = ?");
+		setQueryString("select * from reportparameters");
+		setRowQueryString("select * from reportparameters where id = ?");
 		setPrimaryKeyColumns("ID");
 	}
 
@@ -35,18 +35,19 @@ public class ReportsRunHistory extends OracleQuery {
 	public int storeRow(Connection conn, Item row) throws UnsupportedOperationException, SQLException {
 
 		int retval = 0;
-		try (CallableStatement call = conn.prepareCall("{ ? = call reports.reportrunhistory(?,?,?,?,?,?) }")) {
+		try (CallableStatement call = conn.prepareCall("{ ? = call reports.reportparameter(?,?,?,?,?,?,?,?) }")) {
 			
 			int i=1;
 
 			call.registerOutParameter(i++, Types.VARCHAR);
 			
 			setString(call, i++, getId(row));
-			setString(call, i++, getOracleString(row,"USERID"));
+			setString(call, i++, getRowStamp(row));
 			setString(call, i++, getOracleString(row,"REPORTID"));
-			setString(call, i++, getOracleString(row,"FILEFORMAT"));
-			setTimestamp(call, i++, getOracleTimestamp(row,"RANON"));
-			setString(call, i++, getOracleString(row, "FILELOCATION"));
+			setBigDecimal(call, i++, getDecimal(row,"PARAMETERNUMBER"));
+			setString(call, i++, getOracleString(row,"PARAMETER"));
+			setString(call, i++, getOracleString(row, "PARAMETERTYPE"));
+			setString(call, i++, getOracleString(row, "LISTNAME"));
 			
 			retval = call.executeUpdate();
 			setLastId(call.getString(1));
