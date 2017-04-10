@@ -6,7 +6,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.data.util.filter.Compare;
-import com.vaadin.data.util.sqlcontainer.SQLContainer;
+import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
@@ -36,7 +36,7 @@ public class SecurityGroupEditorView extends TopBarView {
 	private OracleTimestampField modified;
 	
 	private FieldGroup binder;
-	private SQLContainer container;
+	private OracleContainer container;
 	private Item item;
 
 	public SecurityGroupEditorView() {
@@ -111,7 +111,7 @@ public class SecurityGroupEditorView extends TopBarView {
 		query.setMandatoryFilters(new Compare.Equal("ID",parameters));
 		try {
 			
-			container = new SQLContainer(query);
+			container = new OracleContainer(query);
 			item = container.getItem(container.getIdByIndex(1));
 			
 			binder = new FieldGroup();
