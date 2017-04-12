@@ -16,6 +16,7 @@ import edu.missouri.operations.reportcenter.ui.views.configuration.properties.Sy
 import edu.missouri.operations.reportcenter.ui.views.configuration.reports.ReportsView;
 import edu.missouri.operations.reportcenter.ui.views.configuration.reports.ScheduledReportsView;
 import edu.missouri.operations.reportcenter.ui.views.configuration.scheduledtasks.ScheduledTasksView;
+import edu.missouri.operations.reportcenter.ui.views.configuration.securitygroups.SecurityGroupEditorView;
 import edu.missouri.operations.reportcenter.ui.views.configuration.securitygroups.SecurityGroupsView;
 import edu.missouri.operations.reportcenter.ui.views.configuration.users.UsersView;
 import edu.missouri.operations.reportcenter.ui.views.main.MainView;
@@ -95,6 +96,8 @@ public class ReportCenterViewProvider implements ViewProvider {
 			return new UsersView();
 		case SECURITYGROUPS:
 			return new SecurityGroupsView();
+		case SECURITYGROUPEDITOR:
+			return new SecurityGroupEditorView();
 		case REPORTS:
 			return new ReportsView();
 		case SCHEDULEDREPORTS:

@@ -12,6 +12,7 @@ public class IconSet extends HashMap<String, ThemeResource> {
 		put("edit", new ThemeResource("icons/general/small/Edit.png"));
 	    put("save",new ThemeResource("icons/general/small/Save.png"));
 	    put("delete",new ThemeResource("icons/general/small/Delete.png"));
+	    put("cancel", new ThemeResource("icons/general/small/Cancel.png"));
 	    put("database", new ThemeResource("icons/chalkwork/basic/folder_open_16x16.png"));
 	    put("folder", new ThemeResource("icons/chalkwork/basic/folder_open_16x16.png"));
 	    put("reschedule", new ThemeResource("icons/chalkwork/basic/clock_share_16x16.png"));
