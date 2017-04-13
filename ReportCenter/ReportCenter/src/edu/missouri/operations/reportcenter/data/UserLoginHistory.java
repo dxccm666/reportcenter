@@ -35,10 +35,7 @@ public class UserLoginHistory extends OracleQuery {
 		setPrimaryKeyColumns("ID");
 	}
 	
-	public void setLastUserId(String userId) {
-		
-		setQueryString("select * from LASTUSERLOGINHISTORY");
-		setRowQueryString("select * from LASTUSERLOGINHISTORY where id = ?");
+	public void setUserId(String userId) {
 		
 		removeMandatoryFilters();
 		setMandatoryFilters(new Compare.Equal("USERID", userId));

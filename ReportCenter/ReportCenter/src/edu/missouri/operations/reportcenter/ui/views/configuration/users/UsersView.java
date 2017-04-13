@@ -5,24 +5,31 @@ import java.sql.SQLException;
 import com.vaadin.data.util.sqlcontainer.OracleContainer;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.label.ContentMode;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
 
+import edu.missouri.operations.reportcenter.ReportcenterUI;
 import edu.missouri.operations.reportcenter.data.Users;
+import edu.missouri.operations.reportcenter.ui.ReportCenterViewProvider;
 import edu.missouri.operations.reportcenter.ui.TopBarView;
 import edu.missouri.operations.ui.StandardTable;
 import edu.missouri.operations.ui.TableColumn;
 import edu.missouri.operations.ui.desktop.buttons.AddButton;
+import edu.missouri.operations.ui.desktop.buttons.AddNavigatorButton;
 import edu.missouri.operations.ui.desktop.buttons.DeleteButton;
 import edu.missouri.operations.ui.desktop.buttons.EditButton;
+import edu.missouri.operations.ui.desktop.buttons.EditNavigatorButton;
 
 public class UsersView extends TopBarView {
 
 	private StandardTable table;
-	private AddButton addButton;
-	private EditButton editButton;
+	private AddNavigatorButton addButton;
+	private EditNavigatorButton editButton;
 	private DeleteButton deleteButton;
 
 	public UsersView() {
@@ -45,17 +52,29 @@ public class UsersView extends TopBarView {
 				add(new TableColumn("ISACTIVE", "Active?"));
 				add(new TableColumn("CREATED", "Created"));
 				add(new TableColumn("CREATEDBY", "Created By"));
+				setMultiSelect(false);
 			}
 		};
 
-		addButton = new AddButton() {
-			{
+		addButton = new AddNavigatorButton(ReportcenterUI.get().getViewNavigator(), ReportCenterViewProvider.Views.USEREDITOR);
+		
+		
+		editButton = new EditNavigatorButton(ReportcenterUI.get().getViewNavigator(), ReportCenterViewProvider.Views.USEREDITOR);
+		editButton.setClickListener(new Button.ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+
+				Object itemId = table.getValue();
+				if (itemId != null) {
+					editButton.navigateTo(itemId.toString());
+				} else {
+					Notification.show("Must select row in table below.");
+				}
+
 			}
-		};
-		editButton = new EditButton() {
-			{
-			}
-		};
+
+		});
 
 		deleteButton = new DeleteButton() {
 			{
